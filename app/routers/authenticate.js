@@ -4,19 +4,18 @@ var
 	crypto = require("crypto"),
 	validator = require("validator"),
 	AccountModel = require("../models/account.js"),
+	util = require("util"),
 	router = express.Router();
 
-router.route("/api/accounts/logout").all(function(req, res, next) {
+router.route("/api/logout").all(function(req, res, next) {
 
-	if (req.session) {
-		req.session.destroy(function() {
-			next();
-		});
-	}
+	logger.info("logout called");
+	req.logout();
+	res.json({ loggedOut: true });
 
 });
 
-router.route("/api/accounts/authenticate").post(function(req, res) {
+router.route("/api/login").post(function(req, res) {
 
 	var
 		salt = "salt rocks!",
@@ -32,7 +31,7 @@ router.route("/api/accounts/authenticate").post(function(req, res) {
 		return res.status(401).end();
 	}
 
-	saltedPassword = req.body.password.toString();
+	//saltedPassword = req.body.password.toString();
 
 	AccountModel.findOne({
 		emailAddress: req.body.emailAddress,
@@ -42,12 +41,17 @@ router.route("/api/accounts/authenticate").post(function(req, res) {
 		if (err || !account) return res.status(401).end();
 
 		logger.info("account found");
+		logger.info(util.inspect(account, 0));
 
 		// convert mongo document to plain object, the process login
 		account = account.toObject();
+
 		req.login(account, function(err) {
 
-			if (err) return res.status(500).json(err);
+			if (err) {
+				logger.info(util.inspect(err,0));
+				return res.status(500).json(err);
+			}
 
 			logger.info("login processed");
 			res.json(account);

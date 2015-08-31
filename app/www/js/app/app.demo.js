@@ -12,7 +12,7 @@
 		/*
 		$.ajax({
 			type:"POST",
-			url: "/api/accounts/authenticate",
+			url: "/api/login",
 			contentType: "application/json",
 			data: JSON.stringify({
 				emailAddress: "eric@training4developers.com",
@@ -26,7 +26,7 @@
 		/*
 		$.ajax({
 			type:"GET",
-			url: "/api/accounts/logout"
+			url: "/api/logout"
 		}).then(function(result) {
 			console.dir(result);
 		});
