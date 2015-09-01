@@ -15,11 +15,13 @@
     "tests"
   ],
   "dependencies": {
-    "requirejs": "~2.1.20",
-    "dojo": "~1.10.4",
-    "jquery": "~2.1.4",
-    "underscore": "~1.8.3",
     "backbone": "~1.2.2",
-    "handlebars": "~3.0.3"
+    "backbone.marionette": "marionette#~2.4.2",
+    "dijit": "~1.10.4",
+    "dojo": "~1.10.4",
+    "handlebars": "~3.0.3",
+    "jquery": "~2.1.4",
+    "requirejs": "~2.1.20",
+    "underscore": "~1.8.3"
   }
 }
