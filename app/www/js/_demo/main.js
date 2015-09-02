@@ -5,8 +5,8 @@ requirejs.config({
 	},
 
 	config: {
-		"app-amd/i18n": {
-			locale: 'fr-fr'
+		"app/i18n": {
+			locale: 'dog-corgi'
 		}
 	},
 
@@ -18,4 +18,4 @@ requirejs.config({
 
 });
 
-requirejs(['app-amd/app']);
+requirejs(['app/app']);
