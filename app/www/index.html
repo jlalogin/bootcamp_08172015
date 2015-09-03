@@ -14,8 +14,20 @@
 
 	<body class="claro">
 		<!--<div id="app" class="container-fluid"></div>-->
+		<!--<span data-dojo-type="MyFirstWidget" data-dojo-props="label: 'Hi!'"></span>-->
 
-		<span data-dojo-type="MyFirstWidget" data-dojo-props="label: 'Hi!'"></span>
+		<table>
+			<thead>
+				<tr>
+					<th>File Name</th>
+					<th>Description</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-dojo-type="UserFileRow" data-dojo-id="userFileRow" data-dojo-props="fileName: 'Test File', fileDesc: 'Test Desc'"></tr>
+			</tbody>
+		</table>
 
 		<script>
 			require(["app/app"]);

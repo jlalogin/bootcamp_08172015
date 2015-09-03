@@ -33,17 +33,19 @@
 				"<tr>",
 				"<td data-dojo-attach-point='fileNameCol'></td>",
 				"<td data-dojo-attach-point='fileDescCol'></td>",
-				"<td data-dojo-attach-point='actionCol'>",
-				"<a href='#' data-dojo-attach-event='click: editRow'>Edit</a>",
-				"</td>",
+				"<td data-dojo-attach-point='actionCol'></td>",
 				"</tr>"
 			].join(""),
 
-			fileName: "Test File",
-			_setFileNameAttr: { node: "fileNameCol", type:"innerText" },
+			fileName: "",
+			//_setFileNameAttr: { node: "fileNameCol", type:"innerText" },
 
-			fileDesc: "Test Desc",
-			_setFileDescAttr: { node: "fileDescCol", type:"innerText" },
+			fileDesc: "",
+			//_setFileDescAttr: { node: "fileDescCol", type:"innerText" },
+
+			postCreate: function() {
+				this.viewRow();
+			}
 
 			editRow: function() {
 
