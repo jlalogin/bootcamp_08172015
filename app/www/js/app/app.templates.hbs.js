@@ -82,8 +82,24 @@ this["handlebars"]["noAccountsRow"] = Handlebars.template({"compiler":[6,">= 2.0
     return "<tr><td colspan=\"3\">No Accounts</td></tr>";
 },"useData":true});
 
+this["handlebars"]["rowView"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "<td>"
+    + alias3(((helper = (helper = helpers.emailAddress || (depth0 != null ? depth0.emailAddress : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"emailAddress","hash":{},"data":data}) : helper)))
+    + "</td><td>"
+    + alias3(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"firstName","hash":{},"data":data}) : helper)))
+    + "</td><td>"
+    + alias3(((helper = (helper = helpers.lastName || (depth0 != null ? depth0.lastName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"lastName","hash":{},"data":data}) : helper)))
+    + "</td>";
+},"useData":true});
+
 this["handlebars"]["summaryView"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<h2>Summary: <span id=\"summary\"></span></h2>";
+},"useData":true});
+
+this["handlebars"]["tableView"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<thead><tr><th>Email Address</th><th>First Name</th><th>Last Name</th></tr></thead><tbody></tbody>";
 },"useData":true});
 
 this["handlebars"]["viewAccount"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
