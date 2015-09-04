@@ -44,6 +44,7 @@ define({
 			{ name: "q", location: "/libs/q", main: "q" },
 			{ name: "handlebars", location: "/libs/handlebars", main: "handlebars" },
 			{ name: "underscore", location: "/libs/underscore", main: "underscore" },
+			{ name: "backbone-faux-server", location: "/libs/backbone-faux-server", main: "backbone-faux-server" },
 			{ name: "backbone", location: "/libs/backbone", main: "backbone" },
 			{ name: "stickit", location: "/libs/backbone.stickit", main: "backbone.stickit" },
 			{ name: "marionette", location: "/libs/backbone.marionette/lib", main: "backbone.marionette" }
