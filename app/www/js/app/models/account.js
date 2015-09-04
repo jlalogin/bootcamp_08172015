@@ -16,6 +16,10 @@ define(["backbone"], function(Backbone) {
 
 		getName: function() {
 			return this.get("firstName") + " " + this.get("lastName");
+		},
+
+		getRecordTitle: function() {
+			return this.get("emailAddress") + " " + this.getName();
 		}
 
 	})

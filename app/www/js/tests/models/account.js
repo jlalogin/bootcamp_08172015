@@ -1,9 +1,12 @@
-define(function (require) {
-  var registerSuite = require('intern!object');
-  var assert = require('intern/chai!assert');
-  var Account = require('/js/app/models/account');
-  var fauxServer;
+define([
+  'intern!object',
+  'intern/sinon',
+  'intern/chai!assert',
+  '/js/app/models/account',
+  'backbone-faux-server'
+], function (registerSuite, sinon, assert, Account, fauxServer) {
 
+  var account;
 
   registerSuite({
     name: 'account Model',
@@ -21,14 +24,31 @@ define(function (require) {
 
     'functions': {
 
-      getName: function () {
+      beforeEach: function() {
 
-				var account = new Account({
+				account = new Account({
+          emailAddress: "bob.smith@somedomain.com",
 					firstName: "Bob",
 					lastName: "Smith"
 				});
 
+      },
+
+      afterEach: function() {
+        account: undefined
+      },
+
+      getName: function () {
 				assert.strictEqual(account.getName(), "Bob Smith");
+      },
+
+      getRecordTitle: function() {
+
+        sinon.spy(account, "getName");
+
+				assert.strictEqual(account.getRecordTitle(), "bob.smith@somedomain.com Bob Smith");
+        assert.isTrue(account.getName.calledOnce);
+
       }
 
     },
@@ -36,8 +56,6 @@ define(function (require) {
     'ajax': {
 
       setup: function () {
-
-        fauxServer = require('backbone-faux-server');
 
         fauxServer
           .get("/api/accounts/:id", function (context, accountId) {
@@ -67,7 +85,6 @@ define(function (require) {
 
       teardown: function () {
         fauxServer.removeRoutes();
-        fauxServer = undefined;
       },
 
       fetch: function() {
@@ -81,7 +98,6 @@ define(function (require) {
 
         account.fetch({
           success: a.callback(function(model) {
-            console.dir(model);
             assert.strictEqual(model.id, modelId);
           })
         })
