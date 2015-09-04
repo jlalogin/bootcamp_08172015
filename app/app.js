@@ -12,6 +12,7 @@ module.exports = function(config) {
 		passport = require("passport"),
 		crypto = require("crypto"),
 		bodyParser = require("body-parser"),
+		path = require("path"),
 		fs = require("fs"),
 		zlib = require("zlib"),
 		BufferStream = require("./buffer-stream"),
@@ -123,6 +124,11 @@ module.exports = function(config) {
 
 	app.use("/api", require("./routers/rest.js")("user-file"));
 	app.use("/api", require("./routers/rest.js")("account"));
+
+	app.use("/tests", express.static(path.join("app","www","tests")), function(req, res) {
+		res.end();
+	});
+
 
 	app.use("/", function(req, res) {
 		//console.log("request made");

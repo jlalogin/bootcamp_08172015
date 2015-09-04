@@ -29,7 +29,30 @@
 			</tbody>
 		</table>
 	-->
+
+		<div draggable="true" ondragstart="dragWithCustomImage(event)">Drag Me!</div>
+
 		<script>
+
+			function dragWithCustomImage(event) {
+
+				console.log("ran it!");
+			  var canvas = document.createElementNS("http://www.w3.org/1999/xhtml","canvas");
+			  canvas.width = canvas.height = 50;
+
+			  var ctx = canvas.getContext("2d");
+			  ctx.lineWidth = 4;
+			  ctx.moveTo(0, 0);
+			  ctx.lineTo(50, 50);
+			  ctx.moveTo(0, 50);
+			  ctx.lineTo(50, 0);
+			  ctx.stroke();
+
+			  var dt = event.dataTransfer;
+			  dt.setData('text/plain', 'Data to Drag');
+			  dt.setDragImage(canvas, 25, 25);
+			}
+
 			require(["app/app"]);
 		</script>
 	</body>
