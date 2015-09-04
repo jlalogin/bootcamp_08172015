@@ -14,7 +14,37 @@
 
 	<body class="claro">
 		<div id="app" class="container-fluid"></div>
-		<!--<span data-dojo-type="MyFirstWidget" data-dojo-props="label: 'Hi!'"></span>-->
+		<span data-dojo-type="MyFirstWidget" data-dojo-props="label: 'Hi!'"></span>
+
+		<script>
+
+			require(["jquery"], function($) {
+
+				function parse() {
+
+					$("[data-dojo-type]").each(function(index, element) {
+						$element = $(element);
+
+						var typeName = $element.attr("data-dojo-type");
+						var widgetProps;
+						eval("widgetProps = { " + $element.attr("data-dojo-props") + " }");
+
+						require(["app/widgets/" + typeName], function() {
+
+							var widget = new window[typeName](widgetProps);
+							widget.placeAt(element);
+							widget.startup();
+						});
+					});
+
+				}
+
+				parse();
+			});
+
+
+		</script>
+
 		<!--
 		<table>
 			<thead>
@@ -30,7 +60,7 @@
 		</table>
 	-->
 
-		<div draggable="true" ondragstart="dragWithCustomImage(event)">Drag Me!</div>
+		<!--<div draggable="true" ondragstart="dragWithCustomImage(event)">Drag Me!</div>-->
 
 		<script>
 
@@ -53,7 +83,7 @@
 			  dt.setDragImage(canvas, 25, 25);
 			}
 
-			require(["app/app"]);
+			//require(["app/app"]);
 		</script>
 	</body>
 </html>

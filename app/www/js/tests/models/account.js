@@ -8,6 +8,7 @@ define([
 
   var account;
 
+
   registerSuite({
     name: 'account Model',
 
@@ -35,11 +36,19 @@ define([
       },
 
       afterEach: function() {
-        account: undefined
+        //account = undefined;
       },
 
       getName: function () {
-				assert.strictEqual(account.getName(), "Bob Smith");
+
+        // arrange
+        var EXPECTED_VALUE = "Bob Smith";
+
+        // act
+        var actualValue = account.getName();
+
+        // assert
+				assert.strictEqual(actualValue , EXPECTED_VALUE);
       },
 
       getRecordTitle: function() {
@@ -98,8 +107,11 @@ define([
 
         account.fetch({
           success: a.callback(function(model) {
-            assert.strictEqual(model.id, modelId);
+              assert.strictEqual(model.id, modelId);
           })
+          //success: function(model) {
+          //  assert.strictEqual(model.id, 3); // modelId);
+          //}
         })
 
       }

@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		httpServer: {
-			port: 8080,
+			port: 8888,
 			rootFolder: wwwFolder,
 			indexFile: indexFile,
 			contentFolders: {
